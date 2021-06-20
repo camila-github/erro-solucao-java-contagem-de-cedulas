@@ -1,4 +1,4 @@
-## Exercicio (Java): Contagem de Cédulas
+## Exercicio (Java): Consumo Médio do Automóvel
 
 O exercicio publicado é referente ao treinamento do Bootcamp Java Developer - Fundamentos Aritméticos em Java 
 (https://digitalinnovation.one)
@@ -6,50 +6,32 @@ O exercicio publicado é referente ao treinamento do Bootcamp Java Developer - F
 
 #### Descrição do Desafio:
 
-Faça a leitura de um valor inteiro. Em seguida, calcule o menor número de notas possíveis (cédulas) onde o valor pode ser decomposto. As notas que você deve considerar são de 100, 50, 20, 10, 5, 2 e 1. Na sequência mostre o valor lido e a relação de notas necessárias.
+Você deve calcular o consumo médio de um automóvel onde será informada a distância total percorrida (em Km) e o total de combustível consumido (em litros).
 
 #### Entrada: 
 
-Você receberá um valor inteiro N (0 < N < 1000000).
+Você receberá dois valores: um valor inteiro X com a distância total percorrida (em Km), e um valor real Y que representa o total de combustível consumido, com um dígito após o ponto decimal.
 
 #### Saída: 
 
-Exiba o valor lido e a quantidade mínima de notas de cada tipo necessárias, seguindo o exemplo de saída abaixo. Após cada linha deve ser imprimido o fim de linha.
+Exiba o valor que representa o consumo médio do automóvel (3 casas após a vírgula), incluindo no final a mensagem "km/l".
 
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
-576 | 576
-. | 5 nota(s) de R$ 100,00
-. | 1 nota(s) de R$ 50,00
-. | 1 nota(s) de R$ 20,00
-. | 0 nota(s) de R$ 10,00
-. | 1 nota(s) de R$ 5,00
-. | 0 nota(s) de R$ 2,00
-. | 1 nota(s) de R$ 1,00
+500 | 14.286 km/l
+35.0
 
 
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
-11257 | 11257
-. | 112 nota(s) de R$ 100,00
-. | 1 nota(s) de R$ 50,00
-. | 0 nota(s) de R$ 20,00
-. | 0 nota(s) de R$ 10,00
-. | 1 nota(s) de R$ 5,00
-. | 1 nota(s) de R$ 2,00
-. | 0 nota(s) de R$ 1,00
+2254 | 18.119 km/l
+124.4
  
 
 Exemplos de Entrada  | Exemplos de Saída
 ------------- | -------------
-503 | 503
-. | 5 nota(s) de R$ 100,00
-. | 0 nota(s) de R$ 50,00
-. | 0 nota(s) de R$ 20,00
-. | 0 nota(s) de R$ 10,00
-. | 0 nota(s) de R$ 5,00
-. | 1 nota(s) de R$ 2,00
-. | 1 nota(s) de R$ 1,00
+4554 | 9.802 km/l
+464.6
 
 
 #### Java　
@@ -62,31 +44,22 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class ContagemDeCedulas {
-  public static void main(String[] args) throws IOException {
+public class ConsumoMedioAutomovel {
+    public static void main(String[] args) throws IOException {
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-   
-    StringTokenizer st = new StringTokenizer(br.readLine());
-    int valorPago = Integer.parseInt(st.nextToken()); 
+    StringTokenizer st;
     
-    int notas[] = {100, 50, 20, 10, 5, 2, 1};
-    int div;
-
-    System.out.println(valorPago);
+    st = new StringTokenizer(br.readLine());
+    int valorDistancia = Integer.parseInt(st.nextToken());
+    
+    st = new StringTokenizer(br.readLine());
+    double valorCombustivel = Double.parseDouble(st.nextToken());
   
-    for(int i = 0; i < notas.length; i++){
-			
-			if( valorPago >= notas[i] ){
-			  div = (int)valorPago / notas[i];
-				System.out.println(div + " nota(s) de R$ " + notas[i] + ",00");
-				valorPago = valorPago % notas[i];
-			} else {
-			  div = 0;
-			  System.out.println(div + " nota(s) de R$ " + notas[i] + ",00");
-			}
-		}
-		br.close();
+    double valorConsumoMedio = valorDistancia / valorCombustivel;
+   
+    System.out.printf(String.format("%.03f", valorConsumoMedio) + " km/l");
+    
   }
 }
 ```
